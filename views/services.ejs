@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Services</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Services</h1>
+  <a href="/dashboard">Dashboard</a>
+
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>ID</th>
+      <th>Provider ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Rate</th>
+      <th>Min</th>
+      <th>Max</th>
+    </tr>
+
+    <% services.forEach(service => { %>
+      <tr>
+        <td><%= service.id %></td>
+        <td><%= service.provider_service_id %></td>
+        <td><%= service.name %></td>
+        <td><%= service.category_name %></td>
+        <td><%= service.rate %></td>
+        <td><%= service.min %></td>
+        <td><%= service.max %></td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
