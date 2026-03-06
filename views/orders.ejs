@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Orders</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Orders</h1>
+  <a href="/dashboard">Dashboard</a>
+
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>ID</th>
+      <th>Chat ID</th>
+      <th>Service</th>
+      <th>Qty</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+
+    <% orders.forEach(order => { %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.chat_id %></td>
+        <td><%= order.service_name %></td>
+        <td><%= order.quantity %></td>
+        <td><%= order.price %></td>
+        <td><%= order.status %></td>
+        <td>
+          <form method="POST" action="/orders/<%= order.id %>/refill" style="display:inline;">
+            <button type="submit">Refill</button>
+          </form>
+          <form method="POST" action="/orders/<%= order.id %>/cancel" style="display:inline;">
+            <button type="submit">Cancel</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
