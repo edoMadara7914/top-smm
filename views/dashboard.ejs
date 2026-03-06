@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Admin Panel</h1>
+
+  <p>Users: <%= users.count %></p>
+  <p>Services: <%= services.count %></p>
+  <p>Orders: <%= orders.count %></p>
+  <p>Payments: <%= payments.count %></p>
+
+  <a href="/users">Users</a> |
+  <a href="/services">Services</a> |
+  <a href="/orders">Orders</a> |
+  <a href="/payments">Payments</a> |
+  <a href="/logout">Logout</a>
+
+  <form method="POST" action="/services/sync" style="margin-top:20px;">
+    <button type="submit">Servislarni Sync qilish</button>
+  </form>
+</body>
+</html>
