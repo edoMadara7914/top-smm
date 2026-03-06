@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payments</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Payments</h1>
+  <a href="/dashboard">Dashboard</a>
+
+  <table border="1" cellpadding="8">
+    <tr>
+      <th>ID</th>
+      <th>Chat ID</th>
+      <th>User</th>
+      <th>Method</th>
+      <th>Receipt Type</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Admin Note</th>
+      <th>Actions</th>
+    </tr>
+
+    <% payments.forEach(payment => { %>
+      <tr>
+        <td><%= payment.id %></td>
+        <td><%= payment.chat_id %></td>
+        <td>
+          <%= (payment.first_name || "") %> <%= (payment.last_name || "") %>
+          <br>
+          @<%= payment.username || "" %>
+        </td>
+        <td><%= payment.method %></td>
+        <td><%= payment.receipt_type || "" %></td>
+        <td><%= payment.amount || 0 %></td>
+        <td><%= payment.status %></td>
+        <td><%= payment.admin_note || "" %></td>
+        <td>
+          <% if (payment.status === "pending") { %>
+            <form method="POST" action="/payments/<%= payment.id %>/approve" style="margin-bottom:8px;">
+              <input type="number" step="0.01" name="amount" placeholder="summa" required>
+              <button type="submit">Tasdiqlash</button>
+            </form>
+
+            <form method="POST" action="/payments/<%= payment.id %>/reject">
+              <input type="text" name="note" placeholder="rad sababi">
+              <button type="submit">Rad etish</button>
+            </form>
+          <% } else { %>
+            Yakunlangan
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
